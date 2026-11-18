@@ -127,6 +127,10 @@ pre.json{font:13px/1.75 var(--mono);white-space:pre-wrap;color:var(--text)}
 
 .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 .proj{display:flex;flex-direction:column}
+.proj.wide{grid-column:1/-1;border-color:rgba(62,230,176,.35)}
+.proj .row{display:grid;grid-template-columns:1fr 1.1fr;gap:20px;align-items:start}
+.proj .row .diagram{margin:0}
+@media (max-width:1000px){.proj .row{grid-template-columns:1fr}}
 .proj h3{font:600 17px var(--sans);color:#fff;margin-bottom:6px}
 .proj p{color:#c3d1de;flex:1;margin-bottom:14px}
 .diagram{font:11.5px/1.5 var(--mono);color:var(--accent);background:#070d12;border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-bottom:12px;white-space:pre;overflow-x:auto}
@@ -377,6 +381,29 @@ pre.json{font:13px/1.75 var(--mono);white-space:pre-wrap;color:var(--text)}
         <div class="cmt">// projects.tf</div>
         <h2><span class="k">◆</span> <span class="es">Proyectos</span><span class="en">Projects</span></h2>
         <div class="projects">
+          <div class="card proj wide">
+            <div class="fn"><span>windows_domain.tf</span><span class="badge">★ Lab ASIR · 2024</span></div>
+            <h3><span class="es">Dominio Windows Server para empresa ficticia (ASIRSA.ES)</span><span class="en">Windows Server domain for a fictitious company (ASIRSA.ES)</span></h3>
+            <div class="row">
+              <div>
+                <p class="es">Diseño y montaje completo del servidor de una empresa de software de ~20 personas: Active Directory y DNS, grupos anidados, permisos NTFS por departamento y proyecto, perfiles móviles y obligatorios, GPO de restricción, horario y equipo de inicio de sesión, cuotas FSRM, RAID-5, copias semanales y alerta de CPU. Toda la configuración está también automatizada en PowerShell.</p>
+                <p class="en">End-to-end design and build of the server for a ~20-person software company: Active Directory and DNS, nested groups, NTFS permissions per department and project, roaming and mandatory profiles, restriction GPOs, logon hours and workstation limits, FSRM quotas, RAID-5, weekly backups and a CPU alert. The whole setup is also automated in PowerShell.</p>
+                <div class="chips" style="margin-bottom:14px"><span class="chip g">Active Directory</span><span class="chip g">GPO</span><span class="chip">NTFS</span><span class="chip">FSRM</span><span class="chip">RAID-5</span><span class="chip">WSB</span><span class="chip">PowerShell</span></div>
+                <a class="btn" href="https://github.com/Bandoler0o/asirsa-windows-domain" target="_blank" rel="noopener">git/ <span class="es">ver repositorio</span><span class="en">view repository</span> ↗</a>
+              </div>
+<div class="diagram">ASIRSA.ES  ·  DC ASIRSA5
+│
+├─ ASIRSA ──┬─ Sistemas    → DocSistemas
+│           ├─ Especiales  → DocDireccion
+│           └─ Software ─┬─ Proyecto1 → DocSoftware\P1
+│                        ├─ Proyecto2 → DocSoftware\P2
+│                        └─ Proyecto3 → DocSoftware\P3
+└─ usuario (invitado)  ✗ sin acceso / no access
+
+GPO   ▸ cmd ✗  taskmgr ✗  USB ✗  panel ✗
+DISK  ▸ RAID-5 · backup dom 08:00 · CPU&gt;70% ⚠</div>
+            </div>
+          </div>
           <div class="card proj">
             <div class="fn"><span>aws_ha_web.tf</span><span class="badge">ASIR · TFG</span></div>
             <h3><span class="es">Arquitectura web de alta disponibilidad en AWS</span><span class="en">High-availability web architecture on AWS</span></h3>
@@ -495,7 +522,7 @@ pre.json{font:13px/1.75 var(--mono);white-space:pre-wrap;color:var(--text)}
 
 <script>
 const skills = [
-  {g:"systems:", items:[["Windows Server",3],["Linux",2],["Active Directory",2],["Hyper-V",2],["VMware",1]]},
+  {g:"systems:", items:[["Windows Server",3],["Linux",2],["Active Directory",2],["Group Policy (GPO)",2],["Hyper-V",2],["VMware",1]]},
   {g:"networking:", items:[["Cisco routers & switches",2],["TCP/IP · VLAN · DHCP · DNS",2],["Firewalls & access control",2]]},
   {g:"automation:", items:[["PowerShell",2],["Bash",2],["SQL",2],["PHP",2]]},
   {g:"monitoring_backup:", items:[["Zabbix",2],["Nagios",2],["Acronis",2],["Windows Server Backup",2]]},
